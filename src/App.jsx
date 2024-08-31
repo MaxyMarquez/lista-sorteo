@@ -118,7 +118,7 @@ function App() {
                   <td className="py-3 text-gray-300">{item.tamer}</td>
                   <td className="py-3 text-gray-300 text-center">{item.egg}</td>
                   <td className="py-3 text-gray-300 text-center">
-                    {isWinner(index) ? "WINNER" : "LOOSER"}
+                    {isWinner(index) ? "WINNER" : "-"}
                   </td>
                 </tr>
               ))}

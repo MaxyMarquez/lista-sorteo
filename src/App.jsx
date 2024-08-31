@@ -51,6 +51,10 @@ function App() {
 
   const isWinner = (index) => winnerPositions.includes(index + 1); // Comparar con índices basados en 1
 
+  const handleDelete = (index) => {
+    setTable((prev) => prev.filter((_, i) => i !== index)); // Filtrar el elemento por índice
+  };
+
   return (
     <>
       <div className="flex flex-col justify-center w-[992px] bg-gray-900 p-10 rounded-2xl">
@@ -100,11 +104,12 @@ function App() {
 
         <table className="w-full mt-10">
           <thead className="rounded border-b border-b-slate-50/25 text-gray-300">
-            <tr className="">
+            <tr>
               <th className="py-3 text-white">#</th>
               <th className="py-3 text-white">Tamer</th>
               <th className="py-3 text-white">Huevos</th>
               <th className="py-3 text-white">Ganador</th>
+              <th className="py-3 text-white w-14">Accion</th>
             </tr>
           </thead>
           <tbody>
@@ -117,8 +122,20 @@ function App() {
                   </td>
                   <td className="py-3 text-gray-300">{item.tamer}</td>
                   <td className="py-3 text-gray-300 text-center">{item.egg}</td>
-                  <td className="py-3 text-gray-300 text-center">
+                  <td
+                    className={`py-3 text-gray-300 text-center ${
+                      isWinner(index) ? "text-green-700" : ""
+                    }`}
+                  >
                     {isWinner(index) ? "WINNER" : "-"}
+                  </td>
+                  <td className="py-3 text-gray-300 text-center">
+                    <button
+                      className=" text-white px-3 py-1 rounded"
+                      onClick={() => handleDelete(index)}
+                    >
+                      x
+                    </button>
                   </td>
                 </tr>
               ))}
